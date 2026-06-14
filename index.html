@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de Criação de Sites</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3fb;
+            color: #0f172a;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 28px 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #2563eb;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: #475569;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #fff;
+            color: #2563eb;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+            padding: 56px 0 32px;
+        }
+
+        .hero-content span {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 66px);
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 620px;
+            color: #475569;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 26px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+            box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #0f172a;
+            border: 1px solid #dbe3ef;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: #2563eb;
+        }
+
+        .preview-card {
+            background: #fff;
+            border: 1px solid #dbe3ef;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .browser-bar {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+
+        .fake-code {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 18px;
+            padding: 20px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .fake-code strong {
+            color: #60a5fa;
+        }
+
+        section {
+            padding: 34px 0;
+        }
+
+        .section-title {
+            margin-bottom: 22px;
+        }
+
+        .section-title small {
+            color: #2563eb;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            margin-top: 8px;
+            font-size: clamp(28px, 4vw, 40px);
+            letter-spacing: -1px;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #64748b;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .lesson-card {
+            background: #fff;
+            border: 1px solid #dbe3ef;
+            border-radius: 22px;
+            padding: 22px;
+            min-width: 0;
+            transition: 0.2s;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 34px rgba(15, 23, 42, 0.08);
+        }
+
+        .lesson-card .number {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .lesson-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .lesson-card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .lesson-card a {
+            display: inline-flex;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .locked {
+            opacity: 0.65;
+        }
+
+        .locked a {
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .roadmap {
+            display: grid;
+            gap: 12px;
+        }
+
+        .roadmap-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 14px;
+            align-items: flex-start;
+            background: #fff;
+            border: 1px solid #dbe3ef;
+            border-radius: 18px;
+            padding: 18px;
+        }
+
+        .roadmap-item strong {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .roadmap-item h3 {
+            margin-bottom: 5px;
+        }
+
+        .roadmap-item p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 30px 0 44px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 28px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                width: 92%;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .nav-links a {
+                background: #fff;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-card {
+                padding: 16px;
+                border-radius: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="page navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">HTML</div>
+                <span>Aulas de Sites</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#aulas">Aulas</a>
+                <a href="#roteiro">Roteiro</a>
+                <a href="manual-html-css-aula-responsivo.html">Manual HTML</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page hero">
+            <div class="hero-content">
+                <span>Curso inicial de criação de sites</span>
+                <h1>Aprenda HTML e CSS do zero.</h1>
+                <p>
+                    Esta página reúne os materiais das aulas para o aluno acessar, estudar e praticar.
+                    Comece pelo manual básico de HTML e CSS, com exemplos prontos para copiar.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="manual-html-css-aula-responsivo.html">
+                        Abrir manual HTML + CSS
+                    </a>
+                    <a class="btn btn-secondary" href="#aulas">
+                        Ver aulas disponíveis
+                    </a>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="browser-bar">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="fake-code">
+                    &lt;<strong>html</strong>&gt;<br>
+                    &nbsp;&nbsp;&lt;<strong>head</strong>&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>style</strong>&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body { background: #eef3fb; }<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<strong>style</strong>&gt;<br>
+                    &nbsp;&nbsp;&lt;/<strong>head</strong>&gt;<br>
+                    &nbsp;&nbsp;&lt;<strong>body</strong>&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Minha página&lt;/h1&gt;<br>
+                    &nbsp;&nbsp;&lt;/<strong>body</strong>&gt;<br>
+                    &lt;/<strong>html</strong>&gt;
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="aulas">
+            <div class="section-title">
+                <small>Materiais</small>
+                <h2>Aulas disponíveis</h2>
+                <p>
+                    Aqui ficam os links dos materiais. Conforme novas aulas forem criadas,
+                    você pode adicionar novos cards apontando para outras páginas HTML.
+                </p>
+            </div>
+
+            <div class="cards">
+                <div class="lesson-card">
+                    <div class="number">01</div>
+                    <h3>Manual HTML + CSS básico</h3>
+                    <p>
+                        Tags mais usadas, exemplos visuais, códigos para copiar e atividades simples para praticar.
+                    </p>
+                    <a href="manual-aula-html-css.html">Abrir aula →</a>
+                </div>
+
+                <div class="lesson-card locked">
+                    <div class="number">02</div>
+                    <h3>CSS básico externo</h3>
+                    <p>
+                        Próximo passo: separar o CSS em um arquivo próprio chamado styles.css.
+                    </p>
+                    <a href="#">Em breve</a>
+                </div>
+
+                <div class="lesson-card locked">
+                    <div class="number">03</div>
+                    <h3>Landing page simples</h3>
+                    <p>
+                        Criar uma página bonita com cabeçalho, cards, botão de contato e seção final.
+                    </p>
+                    <a href="#">Em breve</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="roteiro">
+            <div class="section-title">
+                <small>Sequência</small>
+                <h2>Roteiro sugerido para o aluno</h2>
+                <p>
+                    Uma sequência simples para ele entender aos poucos como uma página é montada.
+                </p>
+            </div>
+
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <strong>1</strong>
+                    <div>
+                        <h3>Entender a estrutura do HTML</h3>
+                        <p>Mostrar o que é html, head, title, style e body.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>2</strong>
+                    <div>
+                        <h3>Praticar as tags principais</h3>
+                        <p>Usar título, parágrafo, imagem, botão, link, lista e div.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>3</strong>
+                    <div>
+                        <h3>Aplicar CSS básico</h3>
+                        <p>Alterar cor, fundo, tamanho da fonte, espaçamento, borda e sombra.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <strong>4</strong>
+                    <div>
+                        <h3>Criar uma página própria</h3>
+                        <p>Fazer uma página de perfil, produto, serviço ou links.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="page">
+            <p>Material de apoio para aulas iniciais de criação de sites.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
