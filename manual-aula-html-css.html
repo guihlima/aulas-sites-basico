@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Básico de HTML + CSS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6fb;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img,
+        video,
+        iframe {
+            max-width: 100%;
+        }
+
+        .topbar {
+            background: #111827;
+            color: white;
+            padding: 18px 8%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+        }
+
+        .topbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .menu a:hover {
+            color: white;
+        }
+
+        .hero {
+            padding: 70px 8%;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #e0f2fe;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 720px;
+            color: #dbeafe;
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        .container {
+            width: 84%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 44px 0;
+        }
+
+        .section-title {
+            margin-bottom: 22px;
+        }
+
+        .section-title span {
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            margin-top: 6px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            max-width: 760px;
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 10px 28px rgba(15,23,42,0.08);
+            border: 1px solid #e5e7eb;
+            min-width: 0;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        .code-box {
+            margin-top: 14px;
+            background: #0f172a;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111827;
+            color: #cbd5e1;
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .copy-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 7px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #1d4ed8;
+        }
+
+        pre {
+            margin: 0;
+            padding: 16px;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        code {
+            color: #e5e7eb;
+            font-size: 14px;
+            white-space: pre;
+        }
+
+        .demo-area {
+            margin-top: 14px;
+            padding: 18px;
+            background: #f9fafb;
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+        }
+
+        .demo-area h1,
+        .demo-area h2,
+        .demo-area h3 {
+            margin-bottom: 8px;
+        }
+
+        .demo-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .demo-link {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .activity {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 28px rgba(15,23,42,0.07);
+            min-width: 0;
+        }
+
+        .activity h3 {
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .activity ul {
+            padding-left: 20px;
+            color: #4b5563;
+        }
+
+        .full-example {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            align-items: start;
+        }
+
+        .preview-profile {
+            background: white;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 28px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 14px 35px rgba(15,23,42,0.12);
+        }
+
+        .preview-profile img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 14px;
+        }
+
+        .preview-profile h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .preview-profile p {
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+
+        .preview-profile a {
+            display: block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .checklist {
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 24px;
+            border-radius: 18px;
+        }
+
+        .checklist ul {
+            padding-left: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 34px 8%;
+            background: #111827;
+            color: #d1d5db;
+            margin-top: 30px;
+        }
+
+        .copy-alert {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #16a34a;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 20;
+        }
+
+        @media (max-width: 900px) {
+            .grid,
+            .activity-list,
+            .full-example {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .topbar-content {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
+            }
+
+            .card,
+            .activity {
+                padding: 18px;
+            }
+
+            .code-header {
+                gap: 10px;
+            }
+
+            .hero {
+                padding: 48px 5%;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .section-title h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="topbar-content">
+            <div class="logo">Manual HTML + CSS</div>
+
+            <nav class="menu">
+                <a href="#estrutura">Estrutura</a>
+                <a href="#tags">Tags</a>
+                <a href="#css">CSS</a>
+                <a href="#exemplo">Exemplo</a>
+                <a href="#atividades">Atividades</a>
+            </nav>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="tag">Aula inicial de desenvolvimento web</span>
+            <h1>Manual básico de HTML + CSS para iniciantes</h1>
+            <p>
+                Nesta página você vai ver as principais tags HTML, exemplos de CSS e atividades simples para praticar.
+                Use os botões de copiar para testar os códigos no seu próprio arquivo.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#tags">Ver tags principais</a>
+                <a class="btn btn-outline" href="#atividades">Ir para atividades</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container" id="estrutura">
+            <div class="section-title">
+                <span>01</span>
+                <h2>Estrutura básica de um arquivo HTML</h2>
+                <p>Todo site simples pode começar com essa estrutura. O conteúdo visível fica dentro do body.</p>
+            </div>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <span>index.html</span>
+                    <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                </div>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Minha primeira página&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+    &lt;p&gt;Essa é minha primeira página em HTML.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+        </section>
+
+        <section class="container" id="tags">
+            <div class="section-title">
+                <span>02</span>
+                <h2>Tags HTML mais usadas</h2>
+                <p>Essas são as tags que aparecem em praticamente qualquer página simples.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Títulos</h3>
+                    <p>Usados para organizar os títulos e subtítulos da página.</p>
+                    <div class="demo-area">
+                        <h1>Título h1</h1>
+                        <h2>Título h2</h2>
+                        <h3>Título h3</h3>
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;h1&gt;Título principal&lt;/h1&gt;
+&lt;h2&gt;Subtítulo&lt;/h2&gt;
+&lt;h3&gt;Título menor&lt;/h3&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Parágrafo</h3>
+                    <p>Usado para escrever textos comuns.</p>
+                    <div class="demo-area">
+                        <p>Esse é um texto comum dentro da página.</p>
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;p&gt;Esse é um texto comum da página.&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Link</h3>
+                    <p>Usado para levar o usuário para outra página ou site.</p>
+                    <div class="demo-area">
+                        <a class="demo-link" href="https://www.google.com" target="_blank">Acessar Google</a>
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;a href=&quot;https://www.google.com&quot; target=&quot;_blank&quot;&gt;Acessar Google&lt;/a&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Imagem</h3>
+                    <p>Usada para exibir fotos, ilustrações ou imagens do projeto.</p>
+                    <div class="demo-area">
+                        <img src="https://via.placeholder.com/250x140" alt="Imagem exemplo" width="250">
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;img src=&quot;imagem.jpg&quot; alt=&quot;Descrição da imagem&quot; width=&quot;300&quot;&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Botão</h3>
+                    <p>Usado para criar uma ação visual na página.</p>
+                    <div class="demo-area">
+                        <button class="demo-button">Clique aqui</button>
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;button&gt;Clique aqui&lt;/button&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Listas</h3>
+                    <p>Usadas para mostrar itens em sequência.</p>
+                    <div class="demo-area">
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="code-box">
+                        <div class="code-header"><span>HTML</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>&lt;ul&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="css">
+            <div class="section-title">
+                <span>03</span>
+                <h2>CSS básico dentro do HTML</h2>
+                <p>O CSS fica dentro da tag style e serve para mudar cores, tamanhos, fontes, espaçamentos e aparência dos elementos.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Estilo no body</h3>
+                    <p>Controla o fundo, fonte e espaçamento geral da página.</p>
+                    <div class="code-box">
+                        <div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Estilo em card</h3>
+                    <p>Cria um bloco bonito com fundo branco, sombra e bordas arredondadas.</p>
+                    <div class="code-box">
+                        <div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Estilo em botão</h3>
+                    <p>Transforma um botão simples em um botão mais moderno.</p>
+                    <div class="code-box">
+                        <div class="code-header"><span>CSS</span><button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button></div>
+                        <pre><code>button {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="exemplo">
+            <div class="section-title">
+                <span>04</span>
+                <h2>Exemplo pronto: página de perfil</h2>
+                <p>Esse exemplo é parecido com uma página de links. É uma atividade boa para iniciante porque mostra algo parecido com um site real.</p>
+            </div>
+
+            <div class="full-example">
+                <div class="preview-profile">
+                    <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+                    <h3>Nome do Aluno</h3>
+                    <p>Estou aprendendo HTML e CSS.</p>
+                    <a href="#">Instagram</a>
+                    <a href="#">WhatsApp</a>
+                    <a href="#">Meu site</a>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>Exemplo completo</span>
+                        <button class="copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+                    </div>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Perfil Pessoal&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            background-color: #eeeeee;
+            font-family: Arial, sans-serif;
+        }
+
+        .perfil {
+            background-color: white;
+            width: 350px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        img {
+            width: 150px;
+            border-radius: 50%;
+        }
+
+        a {
+            display: block;
+            background-color: #0066ff;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div class=&quot;perfil&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/150&quot; alt=&quot;Foto de perfil&quot;&gt;
+
+        &lt;h1&gt;Nome do Aluno&lt;/h1&gt;
+
+        &lt;p&gt;Estou aprendendo HTML e CSS.&lt;/p&gt;
+
+        &lt;a href=&quot;#&quot;&gt;Instagram&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;WhatsApp&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;Meu site&lt;/a&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="atividades">
+            <div class="section-title">
+                <span>05</span>
+                <h2>Atividades para praticar</h2>
+                <p>Depois de copiar e testar os exemplos, o aluno pode praticar criando páginas simples.</p>
+            </div>
+
+            <div class="activity-list">
+                <div class="activity">
+                    <h3>Atividade 1 — Página pessoal</h3>
+                    <ul>
+                        <li>Adicionar nome, idade e cidade.</li>
+                        <li>Colocar uma imagem.</li>
+                        <li>Escrever um parágrafo sobre ele.</li>
+                        <li>Criar uma lista com 3 hobbies.</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>Atividade 2 — Card simples</h3>
+                    <ul>
+                        <li>Criar um card com título.</li>
+                        <li>Adicionar texto e botão.</li>
+                        <li>Usar fundo branco.</li>
+                        <li>Aplicar sombra e borda arredondada.</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>Atividade 3 — Página de produto</h3>
+                    <ul>
+                        <li>Nome do produto.</li>
+                        <li>Imagem do produto.</li>
+                        <li>Descrição e preço.</li>
+                        <li>Botão “Comprar”.</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3>Atividade 4 — Página de links</h3>
+                    <ul>
+                        <li>Foto ou avatar.</li>
+                        <li>Nome e descrição curta.</li>
+                        <li>Três botões com links.</li>
+                        <li>Layout centralizado.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-title">
+                <span>06</span>
+                <h2>Checklist antes de finalizar</h2>
+            </div>
+
+            <div class="checklist">
+                <ul>
+                    <li>O arquivo foi salvo como <strong>index.html</strong>.</li>
+                    <li>A estrutura do HTML está correta.</li>
+                    <li>O CSS está dentro da tag <strong>&lt;style&gt;</strong>.</li>
+                    <li>A página abriu no navegador.</li>
+                    <li>As imagens aparecem corretamente.</li>
+                    <li>Os links funcionam.</li>
+                    <li>O layout está organizado.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Manual básico criado para aula inicial de HTML + CSS.</p>
+    </footer>
+
+    <div class="copy-alert" id="copyAlert">Código copiado!</div>
+
+    <script>
+        function copiarCodigo(botao) {
+            const caixa = botao.closest('.code-box');
+            const codigo = caixa.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(codigo).then(function() {
+                mostrarAlerta();
+            });
+        }
+
+        function mostrarAlerta() {
+            const alerta = document.getElementById('copyAlert');
+            alerta.style.display = 'block';
+
+            setTimeout(function() {
+                alerta.style.display = 'none';
+            }, 1800);
+        }
+    </script>
+
+</body>
+</html>
